@@ -3,7 +3,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HW1_CSharp
 {
-    //Lior
     [TestClass]
     public class UnitTest1
     {
