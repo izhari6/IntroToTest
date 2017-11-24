@@ -22,6 +22,7 @@ public class MoneyBagTest {
 	}
 	
 	@Test
+	//Test that checks if we negate a money bag with 2 positive currencies
 	public void TestNegateWithPositiveNum() {
 		MoneyBag mb = new MoneyBag(m4usd, m2ils);
 		MoneyBag result=(MoneyBag) mb.negate();
@@ -30,7 +31,7 @@ public class MoneyBagTest {
 	}
 	
 	@Test
-	//This test checks Negate() with Negative number
+	//Test that checks if we negate a money bag with 2 negative currencies
 	public void TestNegateWithNegativeNum() {
 		MoneyBag mb = new MoneyBag((Money)m4usd.negate(),(Money)m2ils.negate());
 		MoneyBag result=(MoneyBag) mb.negate();
@@ -39,7 +40,8 @@ public class MoneyBagTest {
 	}
 	
 	@Test
-	//This test checks Negate() with Zero
+	//Test that checks if we negate a money bag with positive currencie and zero currncie
+	//it check what happen when we do negate to money bag that include's zero
 	public void TestNegateWithZero() {
 		MoneyBag mb = new MoneyBag(m0eur,m2ils);
 		MoneyBag result=(MoneyBag) mb.negate();
