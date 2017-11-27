@@ -67,5 +67,24 @@ namespace HW1_CSharp
             HeapSortClass.HeapSort(arr);
             CollectionAssert.AreEqual(expected, arr, "Arr not equal to expected");
         }
+
+        [TestMethod]
+        public void TestOneElemntArr() //array contains only one positive int, expected to be sorted after sort
+        {
+            int[] arr = new[] {1};
+            int[] expected = new[] { 1 };
+            HeapSortClass.HeapSort(arr);
+            CollectionAssert.AreEqual(expected, arr, "Arr not equal to expected");
+        }
+
+        [TestMethod]
+        public void TestReverseSortedArr() //array is already sorted but from high to low, expected to be the sorted after sort
+        {
+            int[] arr = new int[] { 4,3,2,1 };
+            int[] arr1 = arr;
+            int[] expected = new int[] { 1, 2, 3, 4 };
+            HeapSortClass.HeapSort(arr);
+            CollectionAssert.AreEqual(expected, arr1, "Arrays are different");
+        }
     }
 }
