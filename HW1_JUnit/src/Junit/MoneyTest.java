@@ -8,30 +8,39 @@ import org.junit.Test;
 import methods.*;
 
 public class MoneyTest {
+	private Money	positive, negative, zero, nullM, mMAXusd, mMINusd, expected, result;
+	
+	@Before
+	public void setUp() throws Exception {
+		positive=new Money(5,"USD");
+		negative=new Money(-5,"EUR");
+		zero=new Money(0,"ILS");
+		nullM=null;
+		mMAXusd = new Money(Integer.MAX_VALUE, "USD");
+		mMINusd = new Money(Integer.MIN_VALUE, "EUR");
+	}
+	
 	@Test
 	//This test checks Negate() with positive number
 	public void TestNegateWithPositiveNum() {
-		Money Positive=new Money(5,"USD") ;
-		Money result=(Money) Positive.negate();
-		Money expected=new Money(-5,"USD");
+		result=(Money)(positive.negate());
+		expected=new Money(-5,"USD");
 		assertTrue(expected.equals(result));
 	}
 	
 	@Test
 	//This test checks Negate() with Negative number
 	public void TestNegateWithNegativeNum() {
-		Money negative=new Money(-5,"USD") ;
-		Money result=(Money) negative.negate();
-		Money expected=new Money(5,"USD");
+		result=(Money)(negative.negate());
+		expected=new Money(5,"EUR");
 		assertTrue(expected.equals(result));
 	}
 	
 	@Test
 	//This test checks Negate() with Zero
 	public void TestNegateWithZero() {
-		Money zero=new Money(0,"USD") ;
-		Money result=(Money) zero.negate();
-		Money expected=new Money(0,"USD");
+		result=(Money)(zero.negate());
+		expected=new Money(0,"ILS");
 		assertTrue(expected.equals(result));
 	}
 	
@@ -40,15 +49,28 @@ public class MoneyTest {
 	public void testNegatewithNull() {
 		try 
 		{
-			Money nullM=new Money((Integer) null,"USD") ;
-			Money result=(Money)nullM.negate();
-			fail("Sholdnt be here! code is not good");
+			result=(Money)nullM.negate();
+			fail("Should'nt be here! code is not good");
 		}
 		catch(NullPointerException e)
 		{
 			assertTrue(true);
 		}		
-		 
 	}
 
+	@Test
+	//This test checks Negate() with Integer.MAX_VALUE
+	public void TestNegateMaxInt() {
+		result=(Money)(mMAXusd.negate());
+		expected=new Money(-1*Integer.MAX_VALUE,"USD");
+		assertTrue(expected.equals(result));
+	}
+	
+	@Test
+	//This test checks Negate() with Integer.MIN_VALUE
+	public void TestNegateMinInt() {
+		result=(Money)(mMINusd.negate());
+		expected=new Money(-1*Integer.MIN_VALUE,"EUR");
+		assertTrue(expected.equals(result));
+	}
 }

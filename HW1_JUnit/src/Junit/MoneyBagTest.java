@@ -11,7 +11,7 @@ import methods.Money;
 import methods.MoneyBag;
 
 public class MoneyBagTest {
-	private Money m2ils, m4usd, m0eur;
+	private Money m2ils, m4usd, m0eur, mMAXusd, mMINusd;
 	private MoneyBag mb1;
 
 	@Before
@@ -19,6 +19,8 @@ public class MoneyBagTest {
 		m2ils = new Money(2, "ILS");
 		m4usd = new Money(4, "USD");
 		m0eur = new Money(0, "EUR");
+		mMAXusd = new Money(Integer.MAX_VALUE, "USD");
+		mMINusd = new Money(Integer.MIN_VALUE, "USD");
 	}
 	
 	@Test
@@ -80,6 +82,24 @@ public class MoneyBagTest {
 		MoneyBag mb = new MoneyBag();
 		MoneyBag result=(MoneyBag) mb.negate();
 		MoneyBag expected=new MoneyBag();
+		assertTrue(expected.equals(result));
+	}
+	
+	@Test
+	//This test checks Negate() with Integer.MAX_VALUE
+	public void TestNegateMaxInt() {
+		MoneyBag mb = new MoneyBag(mMAXusd,m0eur);
+		MoneyBag result=(MoneyBag) mb.negate();
+		MoneyBag expected=new MoneyBag((Money)mMAXusd.negate(),(Money)m0eur.negate());
+		assertTrue(expected.equals(result));
+	}
+	
+	@Test
+	//This test checks Negate() with Integer.MIN_VALUE
+	public void TestNegateMinInt() {
+		MoneyBag mb = new MoneyBag(mMINusd,m0eur);
+		MoneyBag result=(MoneyBag) mb.negate();
+		MoneyBag expected=new MoneyBag((Money)mMINusd.negate(),(Money)m0eur.negate());
 		assertTrue(expected.equals(result));
 	}
 }
